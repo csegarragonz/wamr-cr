@@ -1,0 +1,7 @@
+/workspace/product-mini/platforms/linux-cr/build/CMakeFiles/vmlib.dir
+/workspace/product-mini/platforms/linux-cr/build/CMakeFiles/iwasm-cr.dir
+/workspace/product-mini/platforms/linux-cr/build/CMakeFiles/edit_cache.dir
+/workspace/product-mini/platforms/linux-cr/build/CMakeFiles/rebuild_cache.dir
+/workspace/product-mini/platforms/linux-cr/build/cr-lib/CMakeFiles/cr-lib.dir
+/workspace/product-mini/platforms/linux-cr/build/cr-lib/CMakeFiles/edit_cache.dir
+/workspace/product-mini/platforms/linux-cr/build/cr-lib/CMakeFiles/rebuild_cache.dir

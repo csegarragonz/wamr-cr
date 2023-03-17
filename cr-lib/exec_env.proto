@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package iwasmcr;
+
+// The interpreter frame seems to contain (all?) information required for the
+// interpreter like the instruction pointer or the return address
+// Defined in core/iwasm/interpreter/wasm_interp.h
+message WASMInterpreterFrame {
+  string foo = 1;
+};
+
+/* Defined in core/iwasm/common/wasm_exec_env.h
+ *
+ * WASMExecEnv *next; // not needed (threading-related)
+ * WASMExecEnv *prev; // not needed (threadint-related)
+ * WASMModuleInstanceCommon *module_inst; // not needed, as we will start a new module instance
+ */
+message WASMExecEnv {
+  WASMInterpreterFrame cur_frame = 1;
+}
