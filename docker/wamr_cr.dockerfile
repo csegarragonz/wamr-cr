@@ -8,7 +8,7 @@ RUN apt update \
 
 # Build wamrc, iwasm, and iwasm-cr
 RUN rm -rf /workspace \
-    && mkdir -p /workspace/wamr-cr \
+    && mkdir -p /workspace \
     && git clone \
         -b main \
         https://github.com/csegarragonz/wamr-cr.git \
@@ -27,9 +27,7 @@ RUN rm -rf /workspace \
     && cd ./build \
     && cmake .. \
     && cmake --build . \
-    && ln -sf /opt/wasm-micro-runtime/product-mini/platforms/linux/build/iwasm /usr/local/bin/iwasm \
-    && cd /workspace \
-    && ./bin/build.sh --clean
+    && ln -sf /opt/wasm-micro-runtime/product-mini/platforms/linux/build/iwasm /usr/local/bin/iwasm
 
 ENV TERM xterm-256color
 WORKDIR /workspace
