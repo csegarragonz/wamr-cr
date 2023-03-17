@@ -4,11 +4,6 @@ This repository contains a proof-of-concept implementation of a library to
 provide checkpoint-restore functionality to WebAssembly modules running on
 WAMR.
 
-## To-Dos
-
-* [ ] Shorter boost installation time
-* [ ] Scripts to run/attach to docker container (no docker compose)
-
 ## Build
 
 The recommended build environment is using our development docker image:

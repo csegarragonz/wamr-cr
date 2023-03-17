@@ -10,6 +10,11 @@ RUN apt update \
         gdb \
         git
 
+# Clone the dotfiles repo
+RUN rm -rf ~/dotfiles \
+    && mkdir -p ~/dotfiles \
+    && git clone https://github.com/csegarragonz/dotfiles ~/dotfiles
+
 # Configure Neovim
 COPY --from=dotfiles /neovim/build/bin/nvim /usr/bin/nvim
 COPY --from=dotfiles /usr/local/share/nvim /usr/local/share/nvim
@@ -21,9 +26,6 @@ RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     && ln -sf ~/dotfiles/nvim/syntax ~/.config/nvim/ \
     && nvim +PlugInstall +qa \
     && nvim +PlugUpdate +qa
-
-# Clone the dotfiles repo
-RUN git clone https://github.com/csegarragonz/dotfiles ~/dotfiles
 
 # Configure Bash
 RUN ln -sf ~/dotfiles/bash/.bashrc ~/.bashrc \

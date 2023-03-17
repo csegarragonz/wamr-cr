@@ -15,11 +15,11 @@ if [[ ! "$(docker ps -a -q -f name=${CTR_NAME})" ]]; then
     fi
 
     docker run \
-      -d \
+      -d -t \
       --name ${CTR_NAME} \
       -v $(pwd):/workspace \
       --workdir /workspace \
-      ${WAMR_CR_IMAGE:-csegarragonz/wasm-micro-runtime:main} \
+      ${WAMR_CR_IMAGE:-csegarragonz/wasm-micro-runtime-cr:main} \
       bash
 fi
 

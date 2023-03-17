@@ -1,0 +1,3 @@
+# Ignore WASM/WAST files
+wasm-apps/*.wasm
+wasm-apps/*.wast
