@@ -1,7 +1,6 @@
 #include "file_utils.hpp"
 
-// TODO - include 3rd-party packages
-// #include <format>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <span>
@@ -13,6 +12,9 @@ namespace iwasmcr::utils {
 
 void dump_to_file(const std::string& path, const std::string& buffer)
 {
+    std::filesystem::path fsPath(path);
+    std::filesystem::create_directories(fsPath.parent_path());
+
     std::ofstream outfile;
     outfile.open(path, std::ios::out | std::ios::binary);
 

@@ -3,3 +3,7 @@ wasm-apps/*.wasm
 wasm-apps/*.wast
 
 # Ignore build files
+build
+
+# Ignore checkpoint dir
+checkpoints
