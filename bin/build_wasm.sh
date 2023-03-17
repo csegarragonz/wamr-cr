@@ -7,9 +7,8 @@ PROJ_ROOT="${THIS_DIR}/.."
 
 pushd ${PROJ_ROOT} >> /dev/null
 
-CC=/opt/wasi-sdk/bin/clang
 SYSROOT=/opt/wasi-sdk/share/wasi-sysroot
-
+CC=/opt/wasi-sdk/bin/clang
 for wasm_file in ${PROJ_ROOT}/wasm-apps/*.c; do
     c_file=$(basename -- ${wasm_file})
     ${CC} \
@@ -18,6 +17,5 @@ for wasm_file in ${PROJ_ROOT}/wasm-apps/*.c; do
         "${PROJ_ROOT}/wasm-apps/${c_file}" \
         -o "${PROJ_ROOT}/wasm-apps/${c_file%.c}.wasm"
 done
-
 
 popd >> /dev/null

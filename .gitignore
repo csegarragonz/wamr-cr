@@ -1,3 +1,5 @@
 # Ignore WASM/WAST files
 wasm-apps/*.wasm
 wasm-apps/*.wast
+
+# Ignore build files

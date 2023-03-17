@@ -11,11 +11,10 @@ The recommended build environment is using our development docker image:
 ```bash
 docker run \
   --rm -it \
-  --name iwasmcr \
-  -v $(pwd):/workspace/product-mini/platforms/linux-cr \
-  -v $(pwd)/dev/conan2:/root/.conan2 \
-  --workdir /workspace/product-mini/platforms/linux-cr \
-  csegarragonz/wasm-micro-runtime:main \
+  --name iwasmcr-dev \
+  -v $(pwd):/workspace \
+  --workdir /workspace \
+  csegarragonz/wasm-micro-runtime-cr:main \
   bash
 ```
 
@@ -34,4 +33,8 @@ Inside the container, you may run:
 
 ## Run the demo
 
-TODO: demo not working
+You can run the sample counter app with:
+
+```bash
+./build/iwasm-cr --file ./wasm-apps/counter.wasm
+```
