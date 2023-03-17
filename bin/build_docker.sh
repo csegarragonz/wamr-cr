@@ -9,6 +9,7 @@ DOCKER_DIR="${PROJ_ROOT}/docker"
 pushd ${PROJ_ROOT} >> /dev/null
 
 docker buildx build -t csegarragonz/wasm-micro-runtime:main - < ${DOCKER_DIR}/wamr.dockerfile
+docker buildx build -t csegarragonz/wasm-micro-runtime-cr:main - < ${DOCKER_DIR}/wamr_cr.dockerfile
 
 # Only build workon conditionally
 if [[ "$1" == "--build-workon" ]]; then

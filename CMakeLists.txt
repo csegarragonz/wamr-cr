@@ -49,7 +49,7 @@ set(WAMR_BUILD_DEBUG_INTERP 1)
 # WAMR Library
 # --------------------
 
-set (WAMR_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../..)
+set (WAMR_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/wasm-micro-runtime)
 include (${WAMR_ROOT_DIR}/build-scripts/runtime_lib.cmake)
 add_library(vmlib ${WAMR_RUNTIME_LIB_SOURCE})
 target_compile_options(vmlib PRIVATE -Wno-unused-command-line-argument)

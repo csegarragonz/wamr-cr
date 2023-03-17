@@ -15,7 +15,6 @@ RUN apt update \
         g++-multilib \
         git \
         gnupg \
-        libboost-program-options \
         libgcc-9-dev \
         lib32gcc-9-dev \
         libprotobuf-dev \
@@ -101,13 +100,13 @@ RUN mkdir /opt/bazelisk \
 
 # Build wamrc
 ARG WAMR_VERSION=23e9a356e50f157210c72bd7e19570474409edbd
-RUN rm -rf /workspace \
-    && mkdir -p /workspace \
+RUN rm -rf /opt/wasm-micro-runtime \
+    && mkdir -p /opt/wasm-micro-runtime \
     && git clone \
         -b main \
         https://github.com/bytecodealliance/wasm-micro-runtime \
-        /workspace \
-    && cd /workspace \
+        /opt/wasm-micro-runtime \
+    && cd /opt/wasm-micro-runtime \
     && git checkout ${WAMR_VERSION} \
     && cd wamr-compiler \
     && ./build_llvm.sh \
@@ -115,17 +114,16 @@ RUN rm -rf /workspace \
     && cd ./build \
     && cmake .. \
     && cmake --build . \
-    && ln -sf /workspace/wamr-compiler/build/wamrc /usr/local/bin/wamrc
+    && ln -sf /opt/wasm-micro-runtime/wamr-compiler/build/wamrc /usr/local/bin/wamrc
 
 # Build iwasm
-RUN cd /workspace/product-mini/platforms/linux \
+RUN cd /opt/wasm-micro-runtime/product-mini/platforms/linux \
     && mkdir -p build \
     && cd ./build \
     && cmake .. \
     && cmake --build . \
-    && ln -sf /workspace/product-mini/platforms/linux/build/iwasm /usr/local/bin/iwasm
+    && ln -sf /opt/wasm-micro-runtime/product-mini/platforms/linux/build/iwasm /usr/local/bin/iwasm
 
 # Set up working environmnet
 ENV PATH=/usr/local/bin:/opt/wabt/bin:${PATH}
 ENV WASI_SDK_PATH=/opt/wasi-sdk
-WORKDIR /workspace
