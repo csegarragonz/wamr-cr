@@ -94,36 +94,6 @@ RUN mkdir /opt/bazelisk \
     && chmod a+x /opt/bazelisk/bazelisk-linux-amd64 \
     && ln -fs /opt/bazelisk/bazelisk-linux-amd64 /opt/bazelisk/bazel
 
-# Install WAMR and build some targets
-# Note: WAMR does not tag code frequently, so we need to use commit hashes
-# Hash dates from: 16/03/2023
-
-# Build wamrc
-ARG WAMR_VERSION=23e9a356e50f157210c72bd7e19570474409edbd
-RUN rm -rf /opt/wasm-micro-runtime \
-    && mkdir -p /opt/wasm-micro-runtime \
-    && git clone \
-        -b main \
-        https://github.com/bytecodealliance/wasm-micro-runtime \
-        /opt/wasm-micro-runtime \
-    && cd /opt/wasm-micro-runtime \
-    && git checkout ${WAMR_VERSION} \
-    && cd wamr-compiler \
-    && ./build_llvm.sh \
-    && mkdir -p build \
-    && cd ./build \
-    && cmake .. \
-    && cmake --build . \
-    && ln -sf /opt/wasm-micro-runtime/wamr-compiler/build/wamrc /usr/local/bin/wamrc
-
-# Build iwasm
-RUN cd /opt/wasm-micro-runtime/product-mini/platforms/linux \
-    && mkdir -p build \
-    && cd ./build \
-    && cmake .. \
-    && cmake --build . \
-    && ln -sf /opt/wasm-micro-runtime/product-mini/platforms/linux/build/iwasm /usr/local/bin/iwasm
-
 # Set up working environmnet
 ENV PATH=/usr/local/bin:/opt/wabt/bin:${PATH}
 ENV WASI_SDK_PATH=/opt/wasi-sdk

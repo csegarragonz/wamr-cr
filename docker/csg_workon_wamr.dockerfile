@@ -1,5 +1,5 @@
 FROM csegarragonz/dotfiles:0.2.0 as dotfiles
-FROM csegarragonz/wasm-micro-runtime-base:main
+FROM csegarragonz/wasm-micro-runtime-cr:main
 
 RUN apt update \
     && apt upgrade -y \
